@@ -55,17 +55,34 @@
                                             {{x}}
                                         </li>
                                     </ul>
-                                </div>
-
-                            </div>
-                            <div class = "col-md-6">
-                                <img src = "steps.png" height="400" width="550" style="padding-right: 15px;">
-                                
-                            </div>
+                                </div><br/>
                         </div>
+                        <div class = "col-md-6">
+                            <img src = "steps.png" height="400" width="550" style="padding-right: 15px;">
+                            
+                        </div>
+
+                        <!--Mouse Over and Mouse Leave events -->
+                        <!--Text displayed when mouse overs the image and it will be hide whenever mouse leaves from the image-->
+                        <div class = "container">
                         
+                            <img src = "convenient.png" ng-mouseover = "show1 = true" ng-mouseleave="show1 = false">
+                            <span ng-show = "show1">Convenient</span>
+
+                            <img src = "transparent.png" ng-mouseover = "show2 = true" ng-mouseleave="show2 = false">
+                            <span class="show2" ng-show = "show2">Transparent</span>
+
+                            <img src = "sustainable.png" ng-mouseover = "show3 = true" ng-mouseleave="show3 = false">
+                            <span  class="show3" ng-show = "show3">Sustainable</span>
+
+                            <img src = "economical.png" ng-mouseover = "show4 = true" ng-mouseleave="show4 = false">
+                            <span class="show4" ng-show = "show4">Economical</span>
+                        </div>
+                            
                     </div>
-                </div>
+
+                </div></div>
+                
                 <br/><br/>
                 <div>
                     <footer-directive></footer-directive>

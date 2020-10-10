@@ -6,10 +6,7 @@
 'use strict';
 angular.module('ewaste',[])
 .controller('benefitController',benefitController)
-/*.controller('footerController',function($scope)
-{
-    $scope.footermsg = "Copyright © ewaste@exchange.com.";
-})*/
+//.controller('mouseEventController',mouseEventController)
 .directive('footerDirective',FooterDirective);
 
 function FooterDirective()
@@ -22,4 +19,20 @@ function benefitController($scope)
 {
     $scope.benefits = benefitlist;
 }
+
+/*function mouseEventController()
+{
+    var mc = this;
+    //mc.state = false;
+    mc.showtip = function()
+    {
+        mc.state = true;
+        //mc.msg = 'Convenient';
+    };
+    mc.hidetip = function()
+    {
+        mc.state = false;
+    };
+}*/
+
 })();
