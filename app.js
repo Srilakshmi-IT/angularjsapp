@@ -5,7 +5,18 @@
     "GET ASSURED ON: NO Child Labour"];
 'use strict';
 angular.module('ewaste',[])
-.controller('benefitController',benefitController);
+.controller('benefitController',benefitController)
+/*.controller('footerController',function($scope)
+{
+    $scope.footermsg = "Copyright © ewaste@exchange.com.";
+})*/
+.directive('footerDirective',FooterDirective);
+
+function FooterDirective()
+{
+    var ddo = {templateUrl : 'footerDirective.html'};
+    return ddo;
+}
 
 function benefitController($scope)
 {
