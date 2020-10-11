@@ -82,6 +82,27 @@
                     </div>
 
                 </div></div>
+
+                <div class="container">
+                    <div class = "well well-lg">
+                    <div class = "row">
+                        <div class = "col-md-6">
+                            <img src = "picinheritance.png" height="400" width="550" style="padding-left : 15px;">
+                        </div>
+                        <div class = "col-md-6">
+                        <div ng-controller = "parentServiceController as parent">
+                        <div ng-controller= "childProductController as child">
+                            <h3 style="padding-left: 15px;"><U>Services</U></h3>
+                            <ul style="padding-right: 5px;"><li ng-repeat = "x in parent.services">{{x}}</li></ul>
+                            
+                            <h3 style="padding-left: 15px;"><U>Products</U></h3>
+                            <ul style="padding-right: 5px;"><li ng-repeat = "y in child.products">{{y}}</li></ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                </div></div>
                 
                 <br/><br/>
                 <div>

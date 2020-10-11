@@ -25,7 +25,7 @@
                    <li class="dropdown">
                        <a href=" "class = "dropdown-toggle" data-toggle="dropdown">Dispose your e-waste</a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Manufacturers</a></li>
+                            <li><a href="manufacturer.html">Manufacturers</a></li>
                             <li><a href="">State Governments</a></li>
                             <li><a href="">Industry Clusters</a></li>
                             <li><a href="">Consumers</a></li>
@@ -46,67 +46,65 @@
                 <div class="container">
                     
                         <div style="text-align: center;">
-                            <h2>Recyclers</h2>
-                        <h3>We invite Recyclers to join with us: E- Waste Exchange to get unhampered supply raw material.</h3>
+                            <h2>Manufacturers</h2>
+                        
                     </div>
                     <hr>
                     <div style="text-align: center;"><h2 style="border-style: solid;">Connect us with now</h2></div><br/>
-                    <div controller = "recyclerController as recy">
-                    <form  name = "recyclerform" novalidate>
+                    <div controller = "manufacturerController as manu">
+                    <form  name = "manufacturerform" novalidate>
                         <div class="container">
                             <div class="form-group row">
                                 <label for="name" class="col-sm-5 col-form-label" >Name : </label>
-                                <input type="text" name = "name" ng-model = "recy.name" class="col-sm-4" placeholder="Enter your name" ng-required="true"/>
-                                <span style="color: red;" ng-show = "recyclerform.name.$dirty && recyclerform.name.$invalid">
-                                <span ng-show = "recyclerform.name.$error.required">Name is required</span>
+                                <input type="text" name = "name" ng-model = "manu.name" class="col-sm-4" placeholder="Enter your name" ng-required="true"/>
+                                <span style="color: red;" ng-show = "manufacturerform.name.$dirty && manufacturerform.name.$invalid">
+                                <span ng-show = "manufacturerform.name.$error.required">Name is required</span>
                             </span>
                             </div>
                             <div class="form-group row">
                                 <label for="email" class="col-sm-5 col-form-label" >Email : </label>
-                                <input type="email" name = "email" ng-model = "recy.email" class="col-sm-4" placeholder="Enter your email" ng-required="true">
-                                <span ng-show = "recyclerform.email.$dirty && recyclerform.email.$invalid ">
-                                <span style = "color: red;" ng-show = "recyclerform.email.$error.required">Email is required</span>
-                                <span style = "color: orangered;" ng-show = "recyclerform.email.$error.email">Enter a valid email address</span> 
+                                <input type="email" name = "email" ng-model = "manu.email" class="col-sm-4" placeholder="Enter your email" ng-required="true">
+                                <span ng-show = "manufacturerform.email.$dirty && manufacturerform.email.$invalid ">
+                                <span style = "color: red;" ng-show = "manufacturerform.email.$error.required">Email is required</span>
+                                <span style = "color: orangered;" ng-show = "manufacturerform.email.$error.email">Enter a valid email address</span> 
 
                                 </span>
                             </div>
                             <div class="form-group row">
                                 <label for="phone" class="col-sm-5 col-form-label" >Phone number : </label>
-                                <input type="number" ng-minlength ="10" ng-maxlength = "10" name = "phone" ng-model = "recy.phone" class="col-sm-4" placeholder="Enter your phone number" ng-required="true">
-                                <span ng-show = "recyclerform.phone.$dirty && recyclerform.phone.$invalid ">
-                                    <span style="color: red;" ng-show = "recyclerform.phone.$error.required || recyclerform.phone.$error.number">Valid Phone number is required</span>
-                                <span style="color: orangered;" ng-show = "recyclerform.phone.$error.minlength || recyclerform.phone.$error.maxlength ">Only 10 digits are allowed</span>
+                                <input type="number" ng-minlength ="10" ng-maxlength = "10" name = "phone" ng-model = "manu.phone" class="col-sm-4" placeholder="Enter your phone number" ng-required="true">
+                                <span ng-show = "manufacturerform.phone.$dirty && manufacturerform.phone.$invalid ">
+                                    <span style="color: red;" ng-show = "manufacturerform.phone.$error.required || manufacturerform.phone.$error.number">Valid Phone number is required</span>
+                                <span style="color: orangered;" ng-show = "manufacturerform.phone.$error.minlength || manufacturerform.phone.$error.maxlength ">Only 10 digits are allowed</span>
                                 </span>
                             </div>
                             <div class="form-group row">
                                 <label for="message" class="col-sm-5 col-form-label" >Message : </label>
-                                <textarea rows="4" class="col-sm-4" ng-model="recy.message" placeholder="Enter message"></textarea>
+                                <textarea rows="4" class="col-sm-4" ng-model="manu.message" placeholder="Enter message"></textarea>
                             </div>
                             <!--<button type="submit">Submit</button><br>
                             <center><span class="backspace"><label><input type="submit" class="btn btn-success" value = "submit" ng-click = "submit(user);"></button></label></span></center>
                            <center><input type="button" ng-click="reset()" value="Reset" class="btn btn-danger"/>
                            -->
                            <p></p>
-                            <center><input type="submit" ng-click = "recy.adddetails(recy.name,recy.email,recy.phone,recy.message);" ng-disabled = "recyclerform.$invalid" value = "submit" class = "btn btn-lg btn-primary"></center>
+                            <center><input type="submit" ng-click = "manu.add()" ng-disabled = "manufacturerform.$invalid" value = "submit" class = "btn btn-lg btn-primary"></center>
                         </div>
                         <br/>
                     </form>
                     <div style="text-align: center;">The details while entering <br/>
-                    {{recy.name | json | uppercase }}  {{recy.email | json}} {{recy.phone | json}}   {{recy.message | json}} </div><br/><br/>
+                    {{manu.name | json | uppercase }}  {{manu.email | json}} {{manu.phone | json}}   {{manu.message | json}} </div><br/><br/>
                   <!--<div style="text-align: center;">The details you entered <br/>
                     {{ recy.getdetails | json | uppercase}}</div>
                     <button type = "submit" class="btn btn-lg btn-primary" ng-click = recy.getdetails>See Other Recyclers Details</button>-->
-                    
-                </div>
-                <div style="text-align: center;" ng-controller = "dispController as disp">All other Recyclers
-                    <ol><li ng-repeat = "x in disp.details">
-                        {{x.rname}} - {{x.remail}}
+                    <div style="text-align: center;">All other Manufacturers
+                    <ol><li ng-repeat = "x in manu.details">
+                        {{x.rname}}  {{x.remail}}
                     </li>
                     </ol>
                   
                     </div>
                     
-                
+                </div>
                    
                 </div>
                 <br/><br/>
