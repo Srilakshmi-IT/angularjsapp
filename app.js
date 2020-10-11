@@ -6,6 +6,7 @@
 'use strict';
 angular.module('ewaste',[])
 .controller('benefitController',benefitController)
+.controller('contactController',contactController)
 //.controller('mouseEventController',mouseEventController)
 .directive('footerDirective',FooterDirective);
 
@@ -20,6 +21,20 @@ function benefitController($scope)
     $scope.benefits = benefitlist;
 }
 
+function contactController($scope)
+{
+    $scope.master = {};
+
+    $scope.details = function(user) {
+      $scope.master = angular.copy(user);
+    };
+
+    /*$scope.reset = function() {
+        $scope.user = angular.copy($scope.master);
+      };
+
+      $scope.reset();*/
+}
 /*function mouseEventController()
 {
     var mc = this;
