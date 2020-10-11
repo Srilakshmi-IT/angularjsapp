@@ -7,9 +7,10 @@
 angular.module('ewaste',[])
 .controller('benefitController',benefitController)
 .controller('contactController',contactController)
+.controller('recyclerController',recyclerController)
 //.controller('mouseEventController',mouseEventController)
-.directive('footerDirective',FooterDirective);
-
+.directive('footerDirective',FooterDirective)
+.service('PartnersService',PartnersService);
 function FooterDirective()
 {
     var ddo = {templateUrl : 'footerDirective.html'};
@@ -34,6 +35,32 @@ function contactController($scope)
       };
 
       $scope.reset();*/
+}
+recyclerController.$inject = ['PartnersService'];
+function recyclerController(PartnersService)
+{
+var recy = this;
+recy.adddetails = function(user){
+    PartnersService.adddetails(user);
+};
+recy.getdetails = PartnersService.getdetails();
+
+//this.partner_details = PartnersService.partner_details;
+//this.partner_details = PartnersService.partner_details;
+}
+function PartnersService()
+{
+    var service = this;
+    var partner_details = {};
+    service.adddetails = function(user)
+    {
+        
+       partner_details = angular.copy(user);
+    };
+    service.getdetails = function()
+    {
+        return partner_details;
+    };
 }
 /*function mouseEventController()
 {
