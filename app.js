@@ -7,15 +7,57 @@
 angular.module('ewaste',[])
 .controller('benefitController',benefitController)
 .controller('contactController',contactController)
-.controller('recyclerController',recyclerController)
-.controller('dispController',dispController)
+.controller('stepsController',stepsController)
 .controller('manufacturerController',manufacturerController)
+.controller('stateGovernmentController',stateGovernmentController)
+.controller('industryController',industryController)
+.controller('individualController',individualController)
 .controller('parentServiceController',parentServiceController)
 .controller('childProductController',childProductController)
-//.controller('mouseEventController',mouseEventController)
+.controller('guidelinesController',guidelinesController)
+.service('guidelinesService',guidelinesService)
+.service('StepsService',StepsService)
 .directive('footerDirective',FooterDirective)
-.service('PartnersService',PartnersService)
-.factory('disposeFactory',disposeFactory);
+.factory('policyFactory',policyFactory);
+
+guidelinesController.$inject = ['policyFactory'];
+function guidelinesController(policyFactory)
+{
+    var gc = this;
+    var gcf = policyFactory();
+    gc.get = gcf.get();
+    
+
+}
+function guidelinesService()
+{
+    var service = this;
+    var s1 = [{n1 : "E-waste Management Guidelines",n2 : "Manufacturer or Recycler",n3:"E-Waste Manifest",n4:"E-Waste Handled or Generated",n5:"EPR Authorization Rules"}];
+    service.get = function() {return s1;};
+}
+function policyFactory()
+{
+    var fact = function()
+    {
+        return new guidelinesService();
+    };
+    return fact;
+}
+stepsController.$inject = ['StepsService'];
+function stepsController(StepsService)
+{
+    var steps = this;
+    steps.show = StepsService.show();
+}
+
+function StepsService()
+{
+
+    var service = this;
+    var img = new Image();
+    img.src = "/howitworks.png";
+    service.show =function(){ return img.src;};
+}
 function FooterDirective()
 {
     var ddo = {templateUrl : 'footerDirective.html'};
@@ -35,11 +77,57 @@ function contactController($scope)
       $scope.master = angular.copy(user);
     };
 
-    /*$scope.reset = function() {
-        $scope.user = angular.copy($scope.master);
-      };
+    
+}
+function manufacturerController($scope)
+{
+    
+    $scope.master = [];
 
-      $scope.reset();*/
+    $scope.add = function(manu)
+    {
+        var list = {name : manu.name,email : manu.email,phone : manu.phone,message : manu.message};
+        $scope.master.push(list);
+        //$scope.master = angular.copy(manu);
+    };
+
+}
+
+function stateGovernmentController($scope)
+{
+    $scope.master = [];
+
+    $scope.govt = function(user)
+    {
+        var list = {name : user.name,email :user.email,phone : user.phone,message : user.message};
+        $scope.master.push(list);
+        
+    };
+}
+
+function industryController($scope)
+{
+    $scope.master = [];
+
+    $scope.industrycluster = function(user)
+    {
+        var list = {name : user.name,email :user.email,phone : user.phone,message : user.message};
+        $scope.master.push(list);
+        
+    };
+}
+
+function individualController($scope)
+{
+    $scope.master = [];
+
+    $scope.individual = function(user)
+    {
+        var list = {name : user.name,email :user.email,phone : user.phone,address:user.address,date : user.date,time : user.time};
+        $scope.master.push(list);
+        
+    };
+
 }
 function parentServiceController()
 {
@@ -51,97 +139,6 @@ function childProductController()
     var child = this;
     child.products = [" ZERO WASTE CERTIFICATION","EPR TRACKER(TM)","M-PRINT","RE-CIRCULATE(TM)"];
 }
-recyclerController.$inject = ['PartnersService'];
-function recyclerController(PartnersService)
-{
-var recy = this;
-recy.name = "";
-recy.email="";
-recy.phone = "";
-recy.message = " ";
-recy.adddetails = function(name,email,phone,message){
-    PartnersService.adddetails(recy.name,recy.email,recy.phone,recy.message);
-};
- 
 
-//this.partner_details = PartnersService.partner_details;
-//this.partner_details = PartnersService.partner_details;
-}
-dispController.$inject = ['PartnersService'];
-function dispController(PartnersService)
-{
-    var disp = this;
-    disp.details = PartnersService.getdetails();
-}
-manufacturerController.$inject = ['disposeFactory'];
-function manufacturerController(disposeFactory)
-{
-var manu = this;
-var f1 = new disposeFactory();
-manu.available = f1.get();
-manu.name = "";
-manu.email = "";
-manu.phone = "";
-manu.message = "";
-manu.add = function()
-{
-f1.add(manu.name,manu.email,manu.phone,manu.message);
-};
-}
-
-function disposeService()
-{
-    var d1 = this;
-    var det = [];
-    d1.add = function(name,email,phone,message)
-    {
-        var x = {rname : name,remail : email,rphone : phone,rmessage : message};
-        det.push(x);
-    };
-    d1.get = function()
-    {
-        return det;
-    };
-}
-function disposeFactory()
-{
-    var factory = function()
-    {
-        return new disposeService();
-    };
-    return factory;
-}
-function PartnersService()
-{
-var service = this;
-   var partner = [{rname:"Shalini", remail : "shalini@gmail.com",rphone : "9234254312",rmessage : "Our company will join with you"},
-{rname:"Praveena",remail : "praveena@gmail.com",rphone : "8736467512"},{rname : "Karthik",remail:"karthik@gmail.com",phone : "8255129945"}];
-    service.adddetails = function(name,email,phone,message)
-    {
-    //var det = {rname : name,remail : email,rphone : phone,rmessage : message};
-       //service.partner_details = user;
-      // return service.partner_details;
-      partner.push(name,email,phone,message);
-    };
-    service.getdetails = function()
-    {
-        return partner;
-    };
-    //{rname:"Shalini", remail : "shalini@gmail.com",rphone : "9234254312",rmessage : "Our company will join with you"}
-}
-/*function mouseEventController()
-{
-    var mc = this;
-    //mc.state = false;
-    mc.showtip = function()
-    {
-        mc.state = true;
-        //mc.msg = 'Convenient';
-    };
-    mc.hidetip = function()
-    {
-        mc.state = false;
-    };
-}*/
 
 })();
