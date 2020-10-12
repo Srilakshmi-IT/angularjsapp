@@ -29,7 +29,7 @@
                             <li><a href="manufacturer.html">Manufacturers</a></li>
                             <li><a href="stategovt.html">State Governments</a></li>
                             <li><a href="industryclusters.html">Industry Clusters</a></li>
-                            <li><a href="bulkconsumers.html">Consumers</a></li>
+                            <li><a href="individuals.html">Consumers</a></li>
                             
                         </ul>
                     </li>
@@ -52,7 +52,7 @@
                     </div>
                     <hr>
                     <div style="text-align: center;"><h2 style="border-style: solid;">Connect us with now</h2></div><br/>
-                    <div controller = "recyclerController as recy">
+                    <div controller = "recyclerController">
                     <form  name = "recyclerform" novalidate>
                         <div class="container">
                             <div class="form-group row">
@@ -83,33 +83,25 @@
                                 <label for="message" class="col-sm-5 col-form-label" >Message : </label>
                                 <textarea rows="4" class="col-sm-4" ng-model="recy.message" placeholder="Enter message"></textarea>
                             </div>
-                            <!--<button type="submit">Submit</button><br>
-                            <center><span class="backspace"><label><input type="submit" class="btn btn-success" value = "submit" ng-click = "submit(user);"></button></label></span></center>
-                           <center><input type="button" ng-click="reset()" value="Reset" class="btn btn-danger"/>
-                           -->
-                           <p></p>
-                            <center><button ng-click = "recy.adddetails();" ng-disabled = "recyclerform.$invalid"  class = "btn btn-lg btn-primary">submit</button></center>
+                            
+                           
+                            <center><button ng-click = "adddetails(recy);" ng-disabled = "recyclerform.$invalid"  class = "btn btn-lg btn-primary">submit</button></center>
                         </div>
                         <br/>
                     </form>
                     <div style="text-align: center;">The details while entering <br/>
                     {{recy.name | json | uppercase }}  {{recy.email | json}} {{recy.phone | json}}   {{recy.message | json}} </div><br/><br/>
-                  <!--<div style="text-align: center;">The details you entered <br/>
-                    {{ recy.getdetails | json | uppercase}}</div>
-                    <button type = "submit" class="btn btn-lg btn-primary" ng-click = recy.getdetails>See Other Recyclers Details</button>-->
+                 
                     
-                </div>
-                <div style="text-align: center;" ng-controller = "dispController as disp">All other Recyclers
+            </br>
+                <div style="text-align: center;" ng-controller = "dispController as disp"><b>All other Recyclers</b><br/> <br/>
                     <ol><li ng-repeat = "x in disp.details">
                         {{x.rname}} - {{x.remail}}
                     </li>
                     </ol>
                   
                     </div>
-                    <div style="text-align: center;" ng-controller = "lengthController as lc">Count of all recyclers : 
-                        {{lc.length}}
-                      
-                        </div>
+                    
                     
                 
                    

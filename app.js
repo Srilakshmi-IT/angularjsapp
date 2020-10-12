@@ -16,6 +16,9 @@ angular.module('ewaste',[])
 .controller('childProductController',childProductController)
 .controller('guidelinesController',guidelinesController)
 .service('guidelinesService',guidelinesService)
+.controller('recyclerController',recyclerController)
+.controller('dispController',dispController)
+.service('PartnersService',PartnersService)
 .service('StepsService',StepsService)
 .directive('footerDirective',FooterDirective)
 .factory('policyFactory',policyFactory);
@@ -140,5 +143,37 @@ function childProductController()
     child.products = [" ZERO WASTE CERTIFICATION","EPR TRACKER(TM)","M-PRINT","RE-CIRCULATE(TM)"];
 }
 
+function recyclerController($scope)
+{
+    $scope.master = [];
 
+    $scope.adddetails = function(recy)
+    {
+        var list = {name : recy.name,email :recy.email,phone : recy.phone,message : recy.message};
+        $scope.master.push(list);
+        
+    };
+ 
+}
+dispController.$inject = ['PartnersService'];
+function dispController(PartnersService)
+{
+    var disp = this;
+    disp.details = PartnersService.getdetails();
+}
+
+function PartnersService()
+{
+var service = this;
+
+var partner = [{rname:"Shalini", remail : "shalini@gmail.com",rphone : "9234254312",rmessage : "Our company will join with you"},
+{rname:"Praveena",remail : "praveena@gmail.com",rphone : "8736467512"},{rname : "Karthik",remail:"karthik@gmail.com",phone : "8255129945"}
+];
+    service.getdetails = function()
+    {
+        return partner;
+    };
+    
+    
+}
 })();
